@@ -1,3 +1,8 @@
+import tracker
+
+
+products = []
+
 while True:
 
     #Menu
@@ -15,14 +20,22 @@ while True:
     #If elif else
 
     if option == "1":
-        print("Coming soon...")
+        name = (input ("Product name: "))
+        price = int(input ("Current price: "))
+        target_price = int(input ("Target price: "))
+        tracker.add_product(products, name, price, target_price )
+        print("Product added!")
     elif option == "2":
         print("Coming soon...")
     elif option == "3":
-        print("Coming soon...")
+        if len(products) == 0:
+            print("You don't have any products yet.")
+        else: 
+            for product in products:
+                print(f"Product name: {product["name"]} - Current price: ${tracker.current_price(product)}")
     elif option == "4":
         print("Goodbye!")
-        break 
+        break
     else:
         print("Invalid option.")
     

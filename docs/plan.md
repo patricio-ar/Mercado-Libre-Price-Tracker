@@ -13,7 +13,7 @@ loads and saves that list as JSON.
 
 **Tech Stack:** Python 3.13, standard library only (`json`, `datetime`), Git, GitHub.
 
-**Spec:** `docs/superpowers/specs/2026-09-16-price-tracker-design.md`
+**Spec:** `docs/design.md`
 
 ## Global Constraints
 
