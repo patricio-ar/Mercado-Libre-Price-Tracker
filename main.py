@@ -1,11 +1,11 @@
 import tracker
+import storage
 
 
-products = []
+products = storage.load_products()
 
 while True:
 
-    #Menu
 
     print("=== Price Tracker ===")
     print("1. Add a product")
@@ -13,17 +13,14 @@ while True:
     print("3. Show my products")
     print("4. Exit")
 
-    #Choose an option
-
     option = input("Choose an option: ")
-
-    #If elif else
 
     if option == "1":
         name = (input ("Product name: "))
         price = int(input ("Current price: "))
         target_price = int(input ("Target price: "))
         tracker.add_product(products, name, price, target_price )
+        storage.save_products(products)
         print("Product added!")
     elif option == "2":
         print("Coming soon...")
