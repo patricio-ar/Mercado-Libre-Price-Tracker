@@ -40,3 +40,5 @@ Every product you add and every price you update is saved in `products.json`, wh
 ## Next update
 
 We are on the way to connecting the Mercado Libre API. You will be able to paste a product link and the price will be updated automatically, and you will still be able to modify every parameter in the `products.json` file.
+
+https://auth.mercadolibre.com.ar/authorization?response_type=code&client_id=2060633006307395&redirect_uri=https://github.com/patricio-ar/Mercado-Libre-Price-Tracker
