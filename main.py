@@ -1,5 +1,6 @@
-import tracker
+import mercadolibre
 import storage
+import tracker
 
 
 def ask_positive_number(message):
@@ -13,6 +14,10 @@ def ask_positive_number(message):
             print("Please enter a positive number.")
 
 
+def current_price_changed(product, new_price):
+    return tracker.current_price(product) != new_price
+
+
 products = storage.load_products()
 
 while True:
@@ -22,7 +27,8 @@ while True:
     print("1. Add a product")
     print("2. Update a price")
     print("3. Show my products")
-    print("4. Exit")
+    print("4. Sync my Mercado Libre products")
+    print("5. Exit")
 
     option = input("Choose an option: ")
 
@@ -81,6 +87,31 @@ while True:
                 
 
     elif option == "4":
+        print("Syncing with Mercado Libre...")
+        item_ids = mercadolibre.get_my_items()
+        if len(item_ids) == 0:
+            print("No listings found.")
+            continue
+
+        added = 0
+        updated = 0
+        for item_id in item_ids:
+            item = mercadolibre.get_item(item_id)
+            if item is None:
+                continue
+
+            product = tracker.find_by_item_id(products, item_id)
+            if product is None:
+                tracker.add_product(products, item["title"], item["price"], item["price"], item_id)
+                added = added + 1
+            elif current_price_changed(product, item["price"]):
+                tracker.update_price(product, item["price"])
+                updated = updated + 1
+
+        storage.save_products(products)
+        print(f"Done! {added} products added, {updated} prices updated.")
+
+    elif option == "5":
         print("Goodbye!")
         break
     else:
