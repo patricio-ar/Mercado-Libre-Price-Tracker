@@ -1,4 +1,6 @@
 products.json
-__pycache__/ 
+__pycache__/
 credentials.json
 tokens.json
+docs/Python-desde-cero.pdf
+docs/teoria-y-ejercicios.md
